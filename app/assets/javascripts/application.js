@@ -13,4 +13,5 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require sweetalert/sweetalert.min.2
 //= require_tree .

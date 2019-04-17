@@ -1,0 +1,27 @@
+<%= form_with(model: book, local: true) do |form| %>
+  <% if author.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+      <ul>
+      <% author.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "author" %>
+    <%= form.collection_select(:author_id, Poc.all, :id, :name, { :prompt => 'Select a POC', :selected => @hardware.poc_id }, { class: 'form-control' }) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<div class="field">
+  <%= form.label "POC" %>
+  <%= form.collection_select(:poc_id, Poc.all, :id, :name, { :prompt => 'Select a POC', :selected => @hardware.poc_id }, { class: 'form-control' }) %>
+</div>

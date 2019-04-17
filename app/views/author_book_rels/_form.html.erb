@@ -1,0 +1,17 @@
+<%= form_with(model: author_book_rel, local: true) do |form| %>
+  <% if author_book_rel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(author_book_rel.errors.count, "error") %> prohibited this author_book_rel from being saved:</h2>
+
+      <ul>
+      <% author_book_rel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

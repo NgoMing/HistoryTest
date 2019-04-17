@@ -2,5 +2,35 @@
 
 <%= render 'form', book: @book %>
 
-<%= link_to 'Show', @book %> |
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+  <% @author_book_rels.each do |author_book| %>
+    <% if author_book.delete_flag == false %>
+      <tr>
+        <td><%= author_book.author.name %></td>
+        <td><%= link_to "Delete", delete_author_book_path(@book, author_book), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<%= form_for @book, url: add_author_book_path(@book) do |f| %>
+
+  <div class="field">
+    <%= f.label :author_id %>
+    <%= f.collection_select(:id, Author.all, :id, :name, include_blank: true, selected: "" ) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add new author" %>
+  </div>
+<% end %>
+
+<% if @book.author_book_rels.last %>
+  <%= link_to 'History', history_book_path(@book, version_no: @book.author_book_rels.last.version_no) %> |
+<% end %>
+
 <%= link_to 'Back', books_path %>

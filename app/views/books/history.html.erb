@@ -1,0 +1,27 @@
+<h1><%= @book.name %></h1>
+
+<table>
+  <tr>
+    <th>Author name</th>
+    <th>Delete_flag</th>
+    <th>#Version</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+  </tr>
+
+  <% @author_book_rels.each do |author_book| %>
+    <% if author_book.delete_flag == false %>
+      <tr>
+          <td><%= author_book.author.name %></td>
+          <td><%= author_book.delete_flag %></td>
+          <td><%= author_book.version_no %></td>
+          <td><%= author_book.created_at %></td>
+          <td><%= author_book.updated_at %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<%= link_to "Prev", history_book_path(@book, version_no: (params[:version_no].to_i - 1)) %> |
+<%= link_to "Next", history_book_path(@book, version_no: (params[:version_no].to_i + 1)) %> |
+<%= link_to 'Back', edit_book_path(@book) %>
