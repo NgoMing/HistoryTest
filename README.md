@@ -1,24 +1,19 @@
-# README
+# Test history of the relation join tables
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Brief
+- Author has many books
+- Book has many authors
+- AuthorBookRelation is the M:N relation table of them
+- AuthorBookRelation should be stored as a history record
 
-Things you may want to cover:
+### Usage
+- Go to `/books`
+- Click to edit a book
+- Choose a author from drop down list
+- Click `Add new author`
+- The temporary author will be stored but is not shown `It is a BUG, see Further for more detail`
+- After adding some authors, click to `Update bool` to add all the author to the relation table
+- Click to `History` to show the history of relation table
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Further
+- Fix the bug: require section to store temporary author list between screens
